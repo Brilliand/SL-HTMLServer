@@ -18,20 +18,26 @@ function loadScript(url, callback) {
 }
 
 loadScript('https://code.jquery.com/jquery-3.2.1.min.js', function() {
+	$('script').first().prevAll().remove();
 	var server_url = $('script').data('server-url');
 
 	var form = $('<form>');
 	form.append($('<input type="text">'));
 	form.append($('<input type="submit">'));
 	form.submit(function(e) {
+		var message = $('input').val();
+		$('input').val("");
+		var el = $('<div>').text(message);
+		el.css({ opacity: 0.5 });
+		$('body').append(el);
 		$.ajax({
 			url: server_url,
 			type: 'post',
 			contentType: 'text/plain',
-			data: $('input').val(),
+			data: message,
 			success: function(data)
 			{
-				$('body').append($('<div>').text(data));
+				el.removeAttr('style');
 			}
 		});
 		e.preventDefault();
