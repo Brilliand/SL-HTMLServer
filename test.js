@@ -22,11 +22,11 @@ loadScript('https://code.jquery.com/jquery-3.2.1.min.js', function() {
 	var server_url = $('script').data('server-url');
 
 	var form = $('<form>');
-	form.append($('<input type="text">'));
+	form.append($('<input type="text" id="msg">'));
 	form.append($('<input type="submit">'));
 	form.submit(function(e) {
-		var message = $('input').val();
-		$('input').val("");
+		var message = $('#msg').val();
+		$('#msg').val("");
 		var el = $('<div>').text(message);
 		el.css({ opacity: 0.5 });
 		$('body').append(el);
