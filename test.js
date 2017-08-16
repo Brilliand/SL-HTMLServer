@@ -27,7 +27,8 @@ loadScript('https://code.jquery.com/jquery-3.2.1.min.js', function() {
 		$.ajax({
 			url: server_url,
 			type: 'post',
-			data: form.serialize(),
+			contentType: 'text/plain',
+			data: $('input').val(),
 			success: function(data)
 			{
 				$('body').append($('<div>').text(data));
