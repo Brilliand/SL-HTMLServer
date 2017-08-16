@@ -3,6 +3,7 @@
 function loadScript(url, callback) {
         var filenode = document.createElement('script');
         filenode.src = url;
+	document.body.appendChild(filenode);
         // IE
         filenode.onreadystatechange = function () {
             if (filenode.readyState === 'loaded' || filenode.readyState === 'complete') {
